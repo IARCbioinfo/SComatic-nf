@@ -23,30 +23,25 @@ Step 4: Detection of somatic mutations. Consists of 2 steps:  <br>
 ## Dependencies
 
 1. This pipeline is based on [nextflow](https://www.nextflow.io). As we have several nextflow pipelines, we have centralized the common information in the [IARC-nf](https://github.com/IARCbioinfo/IARC-nf) repository. Please read it carefully as it contains essential information for the installation, basic usage and configuration of nextflow and our pipelines.
-2. conda
+2. [conda](https://docs.conda.io/en/latest/)
 3. [SComatic](https://github.com/cortes-ciriano-lab/SComatic)
-
-- ...
-- ...
-
+   
 You can avoid installing all the external software by only installing Docker. See the [IARC-nf](https://github.com/IARCbioinfo/IARC-nf) repository for more information.
 
 
 ## Input
   | Type      | Description     |
   |-----------|---------------|
-  | input1    | ...... |
-  | input2    | ...... |
-
-  Specify the test files location
+  | --bam    | BAM file to be analysed (*bai must be available in the same folder). |
+  | --meta    | Metadata file mapping cell barcodes to cell type. |
 
 ## Parameters
 
   * #### Mandatory
 | Name      | Example value | Description     |
 |-----------|---------------|-----------------|
-| --param1    |            xx | ...... |
-| --param2    |            xx | ...... |
+| --scomat_path    |            /Users/lipika/SComatic | Scomatic installation folder path |
+| --ref    |            ref.fa | genome reference files (with index) |
 
   * #### Optional
 | Name      | Default value | Description     |
