@@ -23,8 +23,7 @@ Step 4: Detection of somatic mutations. Consists of 2 steps:  <br>
 ## Dependencies
 
 1. This pipeline is based on [nextflow](https://www.nextflow.io). As we have several nextflow pipelines, we have centralized the common information in the [IARC-nf](https://github.com/IARCbioinfo/IARC-nf) repository. Please read it carefully as it contains essential information for the installation, basic usage and configuration of nextflow and our pipelines.
-2. [conda](https://docs.conda.io/en/latest/)
-3. [SComatic](https://github.com/cortes-ciriano-lab/SComatic)
+2. [SComatic](https://github.com/cortes-ciriano-lab/SComatic)
    
 You can avoid installing all the external software by only installing Docker. See the [IARC-nf](https://github.com/IARCbioinfo/IARC-nf) repository for more information.
 
