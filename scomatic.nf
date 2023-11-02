@@ -38,7 +38,7 @@ if (params.help) {
     log.info ""
     log.info "Mandatory arguments:"
     log.info "--scomat_path   <DIR>   SComatic install folder"
-//    log.info "--input_folder2   <DIR>   Folder containing other VCF files"
+    log.info "--bam_folder    <DIR>   Folder containing BAM files"
     log.info ""
     log.info "Optional arguments:"
     log.info "--output_folder      <DIR>   Output folder"
@@ -75,8 +75,8 @@ params.sample="Example"
 
 //step1 paramters
 //params.scomat_path="SComatic"
-params.bam="Example.scrnaseq.bam"
-params.bai="Example.scrnaseq.bam.bai"
+//params.bam="Example.scrnaseq.bam"
+//params.bai="Example.scrnaseq.bam.bai"
 params.meta="Example.cell_barcode_annotations.tsv"
 params.nTrim=5
 params.maxNM=5
