@@ -1,6 +1,10 @@
-name: template-nf
+name: scomatic-nf
 channels:
   - conda-forge
   - bioconda
 dependencies:
-  - samtools=1.8
+  - python=3.7 
+  - r-base=4.1 
+  - samtools 
+  - datamash 
+  - bedtools
