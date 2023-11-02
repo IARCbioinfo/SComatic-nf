@@ -16,15 +16,15 @@ Step 1: Splitting alignment file(bam) in cell type specific bams using precomput
 Step 2: Collecting base count information at each position of individual cell type.  <br>
 Step 3: Merging base count matrices of all cell.  <br>
 Step 4: Detection of somatic mutations. Consists of 2 steps:  <br>
-	Step4.1. Applies a set of hard filters and Beta binomial tests to discount sites affected by recurrent technical artefacts as somatic mutations.  <br>
-	Step4.2. Additional filters based on external datasets (RNA editing and Panel of Normals), and flags clustered mutations. High quality mutations are marked with the label PASS in the FILTER column of the output file.
+	&emsp;Step4.1. Applies a set of hard filters and Beta binomial tests to discount sites affected by recurrent technical artefacts as somatic mutations.  <br>
+	&emsp;Step4.2. Additional filters based on external datasets (RNA editing and Panel of Normals), and flags clustered mutations. High quality mutations are marked with the label PASS in the FILTER column of the output file.
 
 
 ## Dependencies
 
 1. This pipeline is based on [nextflow](https://www.nextflow.io). As we have several nextflow pipelines, we have centralized the common information in the [IARC-nf](https://github.com/IARCbioinfo/IARC-nf) repository. Please read it carefully as it contains essential information for the installation, basic usage and configuration of nextflow and our pipelines.
 2. conda
-3. [Scomatic](https://github.com/cortes-ciriano-lab/SComatic)
+3. [SComatic](https://github.com/cortes-ciriano-lab/SComatic)
 
 - ...
 - ...
