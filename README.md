@@ -1,4 +1,4 @@
-# Name
+# SComatic-nf
 ## Empty template for nextflow pipelines (short description)
 
 [![CircleCI](https://circleci.com/gh/IARCbioinfo/template-nf.svg?style=svg)](https://circleci.com/gh/IARCbioinfo/template-nf)
@@ -9,12 +9,23 @@
 ![Workflow representation](template-nf.png)
 
 ## Description
-...
+Detects somatic single-nucleotide mutations in high-throughput single-cell genomics and transcriptomics data sets, such as single-cell RNA-seq and single-cell ATAC-seq.
+SComatic runs sequentially in 4 steps:
+
+Step 1: Splitting alignment file(bam) in cell type specific bams using precomputed cell type annotations.
+Step 2: Collecting base count information at each position of individual cell type
+Step 3: Merging base count matrices of all cell.
+Step 4: Detection of somatic mutations. Consists of 2 steps:
+	Step4.1. Applies a set of hard filters and Beta binomial tests to discount sites affected by recurrent technical artefacts as somatic mutations.
+	Step4.2. Additional filters based on external datasets (RNA editing and Panel of Normals), and flags clustered mutations. High quality mutations are marked with the label PASS in the FILTER column of the output file.
+
 
 ## Dependencies
 
 1. This pipeline is based on [nextflow](https://www.nextflow.io). As we have several nextflow pipelines, we have centralized the common information in the [IARC-nf](https://github.com/IARCbioinfo/IARC-nf) repository. Please read it carefully as it contains essential information for the installation, basic usage and configuration of nextflow and our pipelines.
-2. External software:
+2. conda
+3. [Scomatic] (https://github.com/cortes-ciriano-lab/SComatic)
+
 - ...
 - ...
 
