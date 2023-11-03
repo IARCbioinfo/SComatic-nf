@@ -31,7 +31,7 @@ You can avoid installing all the external software by only installing Docker. Se
 ## Input
   | Type      | Description     |
   |-----------|---------------|
-  | --bam    | BAM file to be analysed (*bai must be available in the same folder). |
+  | --bam_folder    | Folder containing BAM files (*bai must be available in the same folder). |
   | --meta    | Metadata file mapping cell barcodes to cell type. |
 
 ## Parameters
@@ -45,8 +45,16 @@ You can avoid installing all the external software by only installing Docker. Se
   * #### Optional
 | Name      | Default value | Description     |
 |-----------|---------------|-----------------|
-| --param3   |            xx | ...... |
-| --param4    |            xx | ...... |
+| --cpu   |            2 | Number of CPUs |
+| --mem    |            20 | memory |
+| --output_folder    |            SComatic-nf-results | Output folder |
+| --nTrim    |            5 | Number of bases trimmed by setting the base quality to 0 at the beginning and end of each read |
+| --maxNM   |            5 | Maximum number of mismatches permitted to consider reads for analysis |
+| --maxNH    |            1 | Maximum number of alignment hits permitted to consider reads for analysis |
+| --chrom    |            all | Chromosome to be analysed |
+| --minbq    |            30 | Minimum base quality permited for the base counts |
+| --nprocs    |            1 | Number of processes |
+| --pon    |            30 | Panel of normals (PoN) file to be used to remove germline polymorphisms and recurrent artefacts |
 
   * #### Flags
 
