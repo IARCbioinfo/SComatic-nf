@@ -20,8 +20,8 @@ Step 3: Merging base count matrices of all cell.  <br>
 
 Step 4: Detection of somatic mutations. Consists of 2 steps: 
 
-	&nbsp;Step4.1. Applies a set of hard filters and Beta binomial tests to discount sites affected by recurrent technical artefacts as somatic mutations.  <br>
-	&nbsp; Step4.2. Additional filters based on external datasets (RNA editing and Panel of Normals), and flags clustered mutations. High quality mutations are marked with the label PASS in the FILTER column of the output file.
+	Step4.1. Applies a set of hard filters and Beta binomial tests to discount sites affected by recurrent technical artefacts as somatic mutations.  <br>
+	Step4.2. Additional filters based on external datasets (RNA editing and Panel of Normals), and flags clustered mutations. High quality mutations are marked with the label PASS in the FILTER column of the output file.
 
 
 ## Dependencies
