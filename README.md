@@ -10,14 +10,14 @@
 
 ## Description
 Detects somatic single-nucleotide mutations in high-throughput single-cell genomics and transcriptomics data sets, such as single-cell RNA-seq and single-cell ATAC-seq.
-SComatic runs sequentially in 4 steps:
+SComatic runs sequentially in 4 steps:  <br>
 
 Step 1: Splitting alignment file(bam) in cell type specific bams using precomputed cell type annotations. <br><br>
 Step 2: Collecting base count information at each position of individual cell type.  <br> <br>
 Step 3: Merging base count matrices of all cell.  <br> <br>
 Step 4: Detection of somatic mutations. Consists of 2 steps:  <br> <br>
-	&emsp;Step4.1. Applies a set of hard filters and Beta binomial tests to discount sites affected by recurrent technical artefacts as somatic mutations.  <br> <br>
-	&emsp;Step4.2. Additional filters based on external datasets (RNA editing and Panel of Normals), and flags clustered mutations. High quality mutations are marked with the label PASS in the FILTER column of the output file.
+	&emsp;&emsp;Step4.1. Applies a set of hard filters and Beta binomial tests to discount sites affected by recurrent technical artefacts as somatic mutations.  <br> <br>
+	&emsp;&emsp;Step4.2. Additional filters based on external datasets (RNA editing and Panel of Normals), and flags clustered mutations. High quality mutations are marked with the label PASS in the FILTER column of the output file.
 
 
 ## Dependencies
