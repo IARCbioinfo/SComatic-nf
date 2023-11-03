@@ -12,11 +12,11 @@
 Detects somatic single-nucleotide mutations in high-throughput single-cell genomics and transcriptomics data sets, such as single-cell RNA-seq and single-cell ATAC-seq.
 SComatic runs sequentially in 4 steps:
 
-Step 1: Splitting alignment file(bam) in cell type specific bams using precomputed cell type annotations. <br>
-Step 2: Collecting base count information at each position of individual cell type.  <br>
-Step 3: Merging base count matrices of all cell.  <br>
-Step 4: Detection of somatic mutations. Consists of 2 steps:  <br>
-	&emsp;Step4.1. Applies a set of hard filters and Beta binomial tests to discount sites affected by recurrent technical artefacts as somatic mutations.  <br>
+Step 1: Splitting alignment file(bam) in cell type specific bams using precomputed cell type annotations. <br><br>
+Step 2: Collecting base count information at each position of individual cell type.  <br> <br>
+Step 3: Merging base count matrices of all cell.  <br> <br>
+Step 4: Detection of somatic mutations. Consists of 2 steps:  <br> <br>
+	&emsp;Step4.1. Applies a set of hard filters and Beta binomial tests to discount sites affected by recurrent technical artefacts as somatic mutations.  <br> <br>
 	&emsp;Step4.2. Additional filters based on external datasets (RNA editing and Panel of Normals), and flags clustered mutations. High quality mutations are marked with the label PASS in the FILTER column of the output file.
 
 
@@ -63,19 +63,24 @@ Flags are special parameters without value.
 | Name      | Description     |
 |-----------|-----------------|
 | --help    | Display help |
-| --flag2    |      .... |
+
 
 
 ## Usage
+ To use SComatic on your bamFile.bam, having metadata.tsv file mapping cell barcodes to cell type and reference genome ref.fa used in alignment, use this command
   ```
-  ...
+  nextflow run iarcbioinfo/SComatic-nf --bam bamFile.bam --meta metadata.tsv --ref ref.fa --scomat_path path/to/Scomatfolder
   ```
 
 ## Output
   | Type      | Description     |
   |-----------|---------------|
-  | output1    | ...... |
-  | output2    | ...... |
+  | SplitBamCellTypes/sample.*.bam    | Folder containing cell-type-specific BAM files (step1 output)  |
+  | Step2_BaseCellCounts/sample.*.tsv    | Folder containing base count information for each cell type and for every position in the genome (step2 output) |
+  | Step3_BaseCellCountsMerged/sample.BaseCellCounts.AllCellTypes.tsv    | Folder containing merged base count file of all cell types. (step3 output)   |
+  | Step4_VariantCalling/sample.calling.step*.tsv  (*=1,2)  | Folder containing two files files (1*.tsv: SNV called after applying filters for removing technical artefacts, 2*.tsv: Further filtered for RNA editing and PoN). (step4 output)   |
+  
+  
 
 
 ## Detailed description (optional section)
