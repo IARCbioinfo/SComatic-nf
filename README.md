@@ -75,7 +75,7 @@ Flags are special parameters without value.
 ## Usage
  To use SComatic on your bamFile.bam, having metadata.tsv file mapping cell barcodes to cell type and reference genome ref.fa used in alignment, use this command
   ```
-  nextflow run iarcbioinfo/SComatic-nf --bam bamFile.bam --meta metadata.tsv --ref ref.fa --scomat_path path/to/Scomatfolder
+  nextflow run iarcbioinfo/SComatic-nf --bam_folder bamFile.bam --meta metadata.tsv --ref ref.fa --scomat_path path/to/Scomatfolder
   ```
 
 ## Output
