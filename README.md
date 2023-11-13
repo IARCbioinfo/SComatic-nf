@@ -77,6 +77,12 @@ annovar database files for hg38 could be downloaded using the command below (exa
 ```
 perl path/to/annovar/annotate_variation.pl -buildver hg38 -downdb -webfrom annovar avsnp147 humandb/
 ```
+Install reference genome to be used in SigProfilerExtractor using python
+```
+$ python
+from SigProfilerMatrixGenerator import install as genInstall
+genInstall.install('GRCh38')
+```
 
  To use SComatic on your bamFile.bam, having metadata.tsv file mapping cell barcodes to cell type and reference genome ref.fa used in alignment fro hg38 genome build, use this command
   ```
