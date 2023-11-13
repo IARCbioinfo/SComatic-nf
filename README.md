@@ -9,13 +9,13 @@
 ![Workflow representation](template-nf.png)
 
 ## Description
-Pipeline for detecting somatic single-nucleotide mutations in high-throughput single-cell genomics and transcriptomics data sets, such as single-cell RNA-seq and single-cell ATAC-seq(using SComatic) and de novo extraction of mutational signatures(using SigProfilerExtractor).
+Pipeline for detecting somatic single-nucleotide mutations in high-throughput single-cell genomics and transcriptomics data sets, such as single-cell RNA-seq and single-cell ATAC-se (using SComatic) and de novo extraction of mutational signatures (using SigProfilerExtractor).
 
-Pipeline runs in following steps:
-&emsp; Step1-4: SComatic steps
-&emsp; annovar: annotated all variants using annovar
-&emsp; preprocessing: to create input for SigProfilerExtractor from SComatic output
-&emsp; Step5_sigprofiler:  de-novo extraction of mutational signatures using SigProfilerExtractor
+Pipeline runs in following steps: <br>
+&emsp; Step1-4: SComatic steps <br>
+&emsp; annovar: annotated all variants using annovar <br>
+&emsp; preprocessing: to create input for SigProfilerExtractor from SComatic output <br>
+&emsp; Step5_sigprofiler:  de-novo extraction of mutational signatures using SigProfilerExtractor <br>
 
 
 ## Dependencies
