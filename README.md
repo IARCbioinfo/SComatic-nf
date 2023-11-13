@@ -9,27 +9,21 @@
 ![Workflow representation](template-nf.png)
 
 ## Description
-Detects somatic single-nucleotide mutations in high-throughput single-cell genomics and transcriptomics data sets, such as single-cell RNA-seq and single-cell ATAC-seq.
-SComatic runs sequentially in 4 steps: 
+Pipeline for detecting somatic single-nucleotide mutations in high-throughput single-cell genomics and transcriptomics data sets, such as single-cell RNA-seq and single-cell ATAC-seq(using SComatic) and de novo extraction of mutational signatures(using SigProfilerExtractor).
 
-Step 1: Splitting alignment file(bam) in cell type specific bams using precomputed cell type annotations. <br>
-
-Step 2: Collecting base count information at each position of individual cell type.  <br> 
-
-Step 3: Merging base count matrices of all cell.  <br> 
-
-Step 4: Detection of somatic mutations. Consists of 2 steps: <br> 
-
-
-&emsp;Step4.1. Applies a set of hard filters and Beta binomial tests to discount sites affected by recurrent technical artefacts as somatic mutations.  <br> 
-
-&emsp;Step4.2. Additional filters based on external datasets (RNA editing and Panel of Normals), and flags clustered mutations. High quality mutations are marked with the label PASS in the FILTER column of the output file.
+Pipeline runs in following steps:
+&emsp; Step1-4: SComatic steps
+&emsp; annovar: annotated all variants using annovar
+&emsp; preprocessing: to create input for SigProfilerExtractor from SComatic output
+&emsp; Step5_sigprofiler:  de-novo extraction of mutational signatures using SigProfilerExtractor
 
 
 ## Dependencies
 
 1. This pipeline is based on [nextflow](https://www.nextflow.io). As we have several nextflow pipelines, we have centralized the common information in the [IARC-nf](https://github.com/IARCbioinfo/IARC-nf) repository. Please read it carefully as it contains essential information for the installation, basic usage and configuration of nextflow and our pipelines.
 2. [SComatic](https://github.com/cortes-ciriano-lab/SComatic)
+3. [annovar](https://annovar.openbioinformatics.org/en/latest/)
+4. [SigProfilerExtractor](https://github.com/AlexandrovLab/SigProfilerExtractor)
    
 You can avoid installing all the external software by only installing Docker. See the [IARC-nf](https://github.com/IARCbioinfo/IARC-nf) repository for more information.
 
@@ -39,7 +33,7 @@ You can avoid installing all the external software by only installing Docker. Se
   |-----------|---------------|
   | --bam_folder    | Folder containing BAM files (*bai must be available in the same folder). |
   | --meta    | Metadata file mapping cell barcodes to cell type. |
-
+  
 ## Parameters
 
   * #### Mandatory
@@ -47,6 +41,10 @@ You can avoid installing all the external software by only installing Docker. Se
 |-----------|---------------|-----------------|
 | --scomat_path    |            /Users/lipika/SComatic | Scomatic installation folder path |
 | --ref    |            ref.fa | genome reference files (with index) |
+| --annovar_path    |           /Users/lipika/annovar | path to annovar |
+| --hdb    |            /Users/lipika/humandb | path to human database for annotation (refGene,cytoBand,exac03,avsnp147,dbnsfp30a,gnomad_genome- required)  |
+| --hg_build    |            GRCh38 | genome build  |
+
 
   * #### Optional
 | Name      | Default value | Description     |
@@ -61,6 +59,8 @@ You can avoid installing all the external software by only installing Docker. Se
 | --minbq    |            30 | Minimum base quality permited for the base counts |
 | --nprocs    |            1 | Number of processes |
 | --pon    |            30 | Panel of normals (PoN) file to be used to remove germline polymorphisms and recurrent artefacts |
+| --min_signatures    |            1 | Minimum number of Mutational signatures |
+| --max_signatures    |            10 | Maximum number of Mutational signatures |
 
   * #### Flags
 
@@ -73,9 +73,14 @@ Flags are special parameters without value.
 
 
 ## Usage
- To use SComatic on your bamFile.bam, having metadata.tsv file mapping cell barcodes to cell type and reference genome ref.fa used in alignment, use this command
+annovar database files for hg38 could be downloaded using the command below (example shown for avsnp147)
+```
+perl path/to/annovar/annotate_variation.pl -buildver hg38 -downdb -webfrom annovar avsnp147 humandb/
+```
+
+ To use SComatic on your bamFile.bam, having metadata.tsv file mapping cell barcodes to cell type and reference genome ref.fa used in alignment fro hg38 genome build, use this command
   ```
-  nextflow run iarcbioinfo/SComatic-nf --bam_folder bamFile.bam --meta metadata.tsv --ref ref.fa --scomat_path path/to/Scomatfolder
+  nextflow run iarcbioinfo/SComatic-nf --bam_folder bamFile.bam --meta metadata.tsv --ref ref.fa --scomat_path path/to/Scomatfolder --annovar_path path/to/annovar --hdb path/to/humandb --hg_build GRCh38
   ```
 
 ## Output
@@ -85,6 +90,8 @@ Flags are special parameters without value.
   | Step2_BaseCellCounts/sample.*.tsv    | Folder containing base count information for each cell type and for every position in the genome (step2 output) |
   | Step3_BaseCellCountsMerged/sample.BaseCellCounts.AllCellTypes.tsv    | Folder containing merged base count file of all cell types. (step3 output)   |
   | Step4_VariantCalling/sample.calling.step*.tsv  (*=1,2)  | Folder containing two files files (1*.tsv: SNV called after applying filters for removing technical artefacts, 2*.tsv: Further filtered for RNA editing and PoN). (step4 output)   |
+  | sigprofiler-input/sample_*.bam    | Folder containing input files for SigProfilerExtractor.  |
+  | sigprofiler-results/*   | Folder containing result files and folders from [SigProfilerExtractor](https://osf.io/t6j7u/wiki/4.%20Using%20the%20Tool%20-%20Output/).  |
   
   
 
