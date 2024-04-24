@@ -1,5 +1,5 @@
 # SComatic-nf
-## Empty template for nextflow pipelines (short description)
+## Pipeline to datect somatic variants from single-cell sequencing data
 
 [![Docker Hub](https://img.shields.io/badge/docker-ready-blue.svg)](https://hub.docker.com/r/iarcbioinfo/template-nf/)
 
