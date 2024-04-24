@@ -96,21 +96,12 @@ genInstall.install('GRCh38')
   
   
 
-
-## Detailed description (optional section)
-...
-
-## Directed Acyclic Graph
-[![DAG](dag.png)](http://htmlpreview.github.io/?https://github.com/IARCbioinfo/template-nf/blob/master/dag.html)
-
 ## Contributions
 
   | Name      | Email | Description     |
   |-----------|---------------|-----------------|
-  | contrib1*    |            xx | Developer to contact for support (link to specific gitter chatroom) |
-  | contrib2    |            xx | Developer |
-  | contrib3    |            xx | Tester |
+  | Lipika Kalson    |            | Developer |
+  | Nicolas Alcala    |           alcalan@iarc.who.int | Developer to contact for support |
 
-## References (optional)
-
-## FAQ (optional)
+## References
+Muyas, F., Sauer, C.M., Valle-Inclán, J.E. et al. De novo detection of somatic mutations in high-throughput single-cell profiling data sets. Nat Biotechnol (2023). https://doi.org/10.1038/s41587-023-01863-z 
