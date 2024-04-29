@@ -60,7 +60,7 @@ exit 0
     /* Software information */
     log.info "help:               ${params.help}"
     log.info "scomat_path:    ${params.scomat_path}"
-//    log.info "input_folder2:   ${params.input_folder2}"
+    log.info "bam_folder:   ${params.bam_folder}"
     log.info "output_folder:       ${params.output_folder}"
 }
 
@@ -68,7 +68,7 @@ exit 0
 // Define the pipeline parameters
 
 // results directory- step 0 // also SComatic path
-params.output_folder="SComatic"
+params.output_folder="SComatic-nf-results"
 
 //common parameters
 params.sample="Example"
@@ -243,8 +243,8 @@ workflow {
     	//scomat_path=Channel.fromPath(params.res_dir)
 	
 	//step1_dir=Channel.fromPath(params.output_step_dir1)
-	bam=Channel.fromPath(params.bam)
-	bai=Channel.fromPath(params.bai)
+	//bam=Channel.fromPath(params.bam)
+	//bai=Channel.fromPath(params.bai)
 	bamFile= Channel.fromFilePairs(params.bam_folder+"*.{bam,bam.bai}")
 					.view()
 	//tuple(
