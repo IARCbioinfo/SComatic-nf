@@ -95,23 +95,19 @@ params.max_signatures=10
 
 //step1 paramters
 params.scomat_path="SComatic"
-params.bam_folder="Example.scrnaseq.bam"
-//params.bai="Example.scrnaseq.bam.bai"
+params.bam_folder="bam"
 params.meta="Example.cell_barcode_annotations.tsv"
 params.nTrim=5
 params.maxNM=5
 params.maxNH=1
 
 //step2 parameters
-//params.output_step_dir2="SComatic/results/Step2_BaseCellCounts"
-params.ref="chr10.fa"
+params.ref="ref.fa"
 params.chrom='all'
 params.minbq=30
 params.nprocs=1
 
 //step4 parameters
-//params.output_step_dir3="SComatic/results/Step3_BaseCellCountsMerged"
-//params.output_step_dir4="SComatic/results/Step4_VariantCalling"
 params.editing="SComatic/RNAediting/AllEditingSites.hg38.txt"
 params.pon="SComatic/PoNs/PoN.scRNAseq.hg38.tsv"
 
@@ -351,7 +347,7 @@ process Step5_sigprofiler{
 		
 	script:
 	"""
-	#!/home/lipikal/miniconda3/envs/sigpro/bin/python
+	#!/usr/bin/env python3
 	
 	from SigProfilerExtractor import sigpro as sig
 	def main_function():
@@ -362,30 +358,20 @@ process Step5_sigprofiler{
 	"""
 }
 
+
 workflow {
-
-	//outputDirectory=Channel.fromPath(params.res_dir)
-    	//create_result_directory(outputDirectory)
-
-    	//scomat_path=Channel.fromPath(params.res_dir)
-	
-	//step1_dir=Channel.fromPath(params.output_step_dir1)
-	//bam=Channel.fromPath(params.bam)
-	//bai=Channel.fromPath(params.bai)
+	//create input channels
 	bamFile= Channel.fromFilePairs(params.bam_folder+"*.{bam,bam.bai}")
 					.view()
-	//tuple(
-        //file("/data/mesomics/work/mesomics2/lipikal/nextflow-practice/SComatic/example_data/Example.scrnaseq.bam"),
-        //file("/data/mesomics/work/mesomics2/lipikal/nextflow-practice/SComatic/example_data/Example.scrnaseq.bam.bai"))	
     	
 	metaFile=Channel.fromPath(params.meta)
     	nTrim=Channel.of(params.nTrim)
     	maxNM=Channel.of(params.maxNM)
     	maxNH=Channel.of(params.maxNH)
 
+	//run step 1
     step1(params.scomat_path, bamFile, metaFile, nTrim, maxNM, maxNH)
 	
-	//step2_dir = Channel.fromPath(params.output_step_dir2)
 	Ref = Channel.fromPath(params.ref)
 	minbq = Channel.of(params.minbq)
 	nprocs= Channel.of(params.nprocs)
@@ -397,8 +383,6 @@ workflow {
 	
 	step3(params.scomat_path, step2.out, sample)
 
-	//step3_dir=Channel.fromPath(params.output_step_dir3)
-	//step4_dir=Channel.fromPath(params.output_step_dir4)
 	edit=Channel.fromPath(params.editing)
 	PON=Channel.fromPath(params.pon)
 	
@@ -409,6 +393,4 @@ workflow {
 	preprocessing(step4.out, sample)
 
 	Step5_sigprofiler(params.hg_build, preprocessing.out, params.min_signatures, params.max_signatures)
-	
-	
 }
