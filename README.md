@@ -1,8 +1,6 @@
 # SComatic-nf
 ## Pipeline to datect somatic variants from single-cell sequencing data
 
-[![Docker Hub](https://img.shields.io/badge/docker-ready-blue.svg)](https://hub.docker.com/r/iarcbioinfo/template-nf/)
-
 ## Description
 Pipeline for detecting somatic single-nucleotide mutations in high-throughput single-cell genomics and transcriptomics data sets, such as single-cell RNA-seq and single-cell ATAC-se (using SComatic) and de novo extraction of mutational signatures (using SigProfilerExtractor).
 
@@ -20,7 +18,7 @@ Pipeline runs in following steps: <br>
 3. [annovar](https://annovar.openbioinformatics.org/en/latest/)
 4. [SigProfilerExtractor](https://github.com/AlexandrovLab/SigProfilerExtractor)
    
-You can avoid installing all the external software by only installing Docker. See the [IARC-nf](https://github.com/IARCbioinfo/IARC-nf) repository for more information.
+Note that the docker and singularity files are for now incomplete and do not contain all necessary dependencies, so dependencies have to be installed locally. We will update them in the future. See the [IARC-nf](https://github.com/IARCbioinfo/IARC-nf) repository for more information.
 
 
 ## Input
